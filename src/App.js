@@ -7,6 +7,16 @@ const mockTeam = (uuid) => {
 };
 const mockTeams = ["a", "b", "c"].map(mockTeam);
 
+const Scenario = ({ title, value }) => {
+  return (
+    <div>
+      <h3>{title}</h3>
+      <span>input: {value} >> </span>
+      <Select inputOptions={mockTeams} inputValue={value} />
+    </div>
+  );
+};
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +27,6 @@ class App extends React.Component {
     const invalidTeamUuid = "not_in_league_uuid";
     const validTeamUuid = mockTeams[0].uuid;
 
-    console.log(mockTeams);
     return (
       <div className="App">
         <div>
@@ -37,23 +46,19 @@ class App extends React.Component {
         </div>
 
         <h1>Scenarios</h1>
-        <div>
-          <h3>With blank input, selects empty option</h3>
-          <span>input: {noInput} >> </span>
-          <Select inputOptions={mockTeams} inputValue={noInput} />
-        </div>
+        {Scenario({
+          value: noInput,
+          title: "With blank input, selects empty option",
+        })}
 
-        <div>
-          <h3>With non-matching input, selects empty option</h3>
-          <span>input: {invalidTeamUuid} >> </span>
-          <Select inputOptions={mockTeams} inputValue={invalidTeamUuid} />
-        </div>
-
-        <div>
-          <h3>With matching input, selects proper option</h3>
-          <span>input: {validTeamUuid} >> </span>
-          <Select inputOptions={mockTeams} inputValue={validTeamUuid} />
-        </div>
+        {Scenario({
+          value: invalidTeamUuid,
+          title: "With non-matching input, selects empty option",
+        })}
+        {Scenario({
+          value: validTeamUuid,
+          title: "With matching input, selects proper option",
+        })}
       </div>
     );
   }

@@ -13,22 +13,43 @@ class App extends React.Component {
   }
 
   render() {
+    const noInput = null;
+    const invalidTeamUuid = "not_in_league_uuid";
+    const validTeamUuid = mockTeams[0].uuid;
+
     console.log(mockTeams);
     return (
       <div className="App">
         <div>
-          <h2>With blank input, selects empty option</h2>
-          <Select inputOptions={mockTeams} inputValue={null} />
+          <h1>Options for the said league:</h1>
+          <table className="table">
+            <tr>
+              <th>Name</th>
+              <th>uuid</th>
+            </tr>
+            {mockTeams.map((t) => (
+              <tr>
+                <td>{t.name}</td>
+                <td>{t.uuid}</td>
+              </tr>
+            ))}
+          </table>
+        </div>
+
+        <h1>Scenarios</h1>
+        <div>
+          <h3>With blank input, selects empty option</h3>
+          <Select inputOptions={mockTeams} inputValue={noInput} />
         </div>
 
         <div>
-          <h2>With non-matching input, selects empty option</h2>
-          <Select inputOptions={mockTeams} inputValue={"not_there"} />
+          <h3>With non-matching input, selects empty option</h3>
+          <Select inputOptions={mockTeams} inputValue={invalidTeamUuid} />
         </div>
 
         <div>
-          <h2>With matching input, selects proper option</h2>
-          <Select inputOptions={mockTeams} inputValue={mockTeams[0].uuid} />
+          <h3>With matching input, selects proper option</h3>
+          <Select inputOptions={mockTeams} inputValue={validTeamUuid} />
         </div>
       </div>
     );

@@ -9,11 +9,13 @@ const mockTeams = ["a", "b", "c"].map(mockTeam);
 
 const Scenario = ({ title, value }) => {
   return (
-    <div>
-      <h3>{title}</h3>
-      <span>input: {value} >> </span>
-      <Select inputOptions={mockTeams} inputValue={value} />
-    </div>
+    <tr className="scenario">
+      <td>{title}</td>
+      <td>{value}</td>
+      <td>
+        <Select inputOptions={mockTeams} inputValue={value} />
+      </td>
+    </tr>
   );
 };
 
@@ -46,19 +48,26 @@ class App extends React.Component {
         </div>
 
         <h1>Scenarios</h1>
-        {Scenario({
-          value: noInput,
-          title: "With blank input, selects empty option",
-        })}
+        <table className="scenarios">
+          <tr>
+            <th>Scenario</th>
+            <th>Input</th>
+            <th>Result</th>
+          </tr>
+          {Scenario({
+            value: noInput,
+            title: "With blank input, selects empty option",
+          })}
 
-        {Scenario({
-          value: invalidTeamUuid,
-          title: "With non-matching input, selects empty option",
-        })}
-        {Scenario({
-          value: validTeamUuid,
-          title: "With matching input, selects proper option",
-        })}
+          {Scenario({
+            value: invalidTeamUuid,
+            title: "With non-matching input, selects empty option",
+          })}
+          {Scenario({
+            value: validTeamUuid,
+            title: "With matching input, selects proper option",
+          })}
+        </table>
       </div>
     );
   }

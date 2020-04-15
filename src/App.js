@@ -39,16 +39,19 @@ class App extends React.Component {
         <h1>Scenarios</h1>
         <div>
           <h3>With blank input, selects empty option</h3>
+          <span>input: {noInput} >> </span>
           <Select inputOptions={mockTeams} inputValue={noInput} />
         </div>
 
         <div>
           <h3>With non-matching input, selects empty option</h3>
+          <span>input: {invalidTeamUuid} >> </span>
           <Select inputOptions={mockTeams} inputValue={invalidTeamUuid} />
         </div>
 
         <div>
           <h3>With matching input, selects proper option</h3>
+          <span>input: {validTeamUuid} >> </span>
           <Select inputOptions={mockTeams} inputValue={validTeamUuid} />
         </div>
       </div>
